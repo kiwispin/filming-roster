@@ -370,12 +370,19 @@
             background-color: #212226;
         }
 
+        /* Cloud status */
+        .cloud-status {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-right: 15px;
+        }
+
     </style>
 </head>
 <body>
 
     <h1>
-        <span>🎥 Technical Team Roster</span>
+        <span>🎥 Technical Team Roster <span id="cloudStatus" class="cloud-status"></span></span>
         <div class="controls">
             <button onclick="resetToDefault()">Reset to Week 3 Plan</button>
             <button class="danger" onclick="clearSchedule()">Clear All</button>
@@ -409,7 +416,19 @@
 
     </div>
 
-<script>
+<script type="module">
+    // --- Firebase Imports & Setup ---
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // Initialize Firebase
+    const firebaseConfig = JSON.parse(__firebase_config);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
     // --- Data Configuration ---
     const students = [
         { id: 'isla', name: 'Isla', color: 'pill-isla' },
@@ -543,11 +562,50 @@
 
     // --- Initialization ---
 
-    function init() {
+    async function init() {
         renderStudentPool();
         renderGrid();
-        loadState();
         setupPoolDrop();
+        
+        // Expose functions globally for HTML onclick handlers
+        window.resetToDefault = resetToDefault;
+        window.clearSchedule = clearSchedule;
+
+        // Cloud Auth
+        document.getElementById('cloudStatus').textContent = "Connecting...";
+        
+        try {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+                await signInAnonymously(auth);
+            }
+            
+            // Connect to Live DB
+            const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'roster_data', 'week3');
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    currentState = data.currentState || {};
+                    currentEquipment = data.currentEquipment || {};
+                    completionState = data.completionState || {};
+                    notesState = data.notesState || {};
+                    updateGridDisplay();
+                    document.getElementById('cloudStatus').textContent = "☁️ Live";
+                } else {
+                    // First time? Save default state to DB
+                    document.getElementById('cloudStatus').textContent = "Initializing...";
+                    resetToDefault(true); 
+                }
+            }, (error) => {
+                console.error("Sync error:", error);
+                document.getElementById('cloudStatus').textContent = "⚠️ Sync Error";
+            });
+
+        } catch (e) {
+            console.error("Auth error:", e);
+            document.getElementById('cloudStatus').textContent = "⚠️ Offline";
+        }
     }
 
     // --- Rendering ---
@@ -858,30 +916,14 @@
     }
 
     function saveState() {
-        localStorage.setItem('berkley_roster_data', JSON.stringify(currentState));
-        localStorage.setItem('berkley_roster_equip', JSON.stringify(currentEquipment));
-        localStorage.setItem('berkley_roster_complete', JSON.stringify(completionState));
-        localStorage.setItem('berkley_roster_notes', JSON.stringify(notesState));
-    }
-
-    function loadState() {
-        const savedData = localStorage.getItem('berkley_roster_data');
-        const savedEquip = localStorage.getItem('berkley_roster_equip');
-        const savedComplete = localStorage.getItem('berkley_roster_complete');
-        const savedNotes = localStorage.getItem('berkley_roster_notes');
-        
-        if (savedData) {
-            currentState = JSON.parse(savedData);
-            currentEquipment = savedEquip ? JSON.parse(savedEquip) : {};
-            completionState = savedComplete ? JSON.parse(savedComplete) : {};
-            notesState = savedNotes ? JSON.parse(savedNotes) : {};
-        } else {
-            currentState = JSON.parse(JSON.stringify(recommendedState));
-            currentEquipment = JSON.parse(JSON.stringify(recommendedEquipment));
-            completionState = {};
-            notesState = {};
-        }
-        updateGridDisplay();
+        // Save to Firebase instead of LocalStorage
+        const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'roster_data', 'week3');
+        setDoc(docRef, {
+            currentState,
+            currentEquipment,
+            completionState,
+            notesState
+        }, { merge: true });
     }
 
     function clearSchedule() {
@@ -900,7 +942,17 @@
         }
     }
 
-    function resetToDefault() {
+    function resetToDefault(skipConfirm = false) {
+        if (skipConfirm) {
+            currentState = JSON.parse(JSON.stringify(recommendedState));
+            currentEquipment = JSON.parse(JSON.stringify(recommendedEquipment));
+            completionState = {};
+            notesState = {};
+            saveState();
+            updateGridDisplay();
+            return;
+        }
+
         const pin = prompt("Enter PIN to reset schedule:");
         if (pin === "2626") {
             if(confirm("Reset to the Week 3 Plan? This will overwrite your changes.")) {
