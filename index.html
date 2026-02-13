@@ -14,6 +14,7 @@
             --text-secondary: #a0a0a0;
             --accent: #4dabf7;
             --success: #40c057;
+            --warning: #fcc419;
             --danger: #ff6b6b;
             --pill-bg: #339af0;
             --trash-bg: #fa5252;
@@ -288,26 +289,33 @@
             font-size: 1.1em;
         }
 
-        /* Small X button inside grid pills */
-        .delete-btn {
+        /* Edit Note Button (Pencil) */
+        .edit-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 16px;
-            height: 16px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 50%;
-            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            font-size: 14px;
             cursor: pointer;
-            opacity: 0.6;
+            opacity: 0.7;
             flex-shrink: 0;
             margin-left: 4px;
+            color: white;
+            transition: all 0.2s;
         }
 
-        .delete-btn:hover {
-            background: rgba(0,0,0,0.5);
-            color: #fff;
+        .edit-btn:hover {
+            background: rgba(255,255,255,0.2);
             opacity: 1;
+        }
+
+        /* Style when note exists */
+        .edit-btn.has-note {
+            color: var(--warning); /* Yellow pencil */
+            opacity: 1;
+            font-weight: bold;
         }
 
         /* --- Grid Structure --- */
@@ -380,7 +388,8 @@
             <span class="key-action">Click Name/Icon</span> to cycle equipment: &nbsp; 🎥 &nbsp;→&nbsp; 📱 &nbsp;→&nbsp; 🚁.
         </div>
         <div class="instruction-line">
-            To remove a person, drag them back to the sidebar.
+            <span class="key-action">Click Pencil ✎</span> to add notes. Hover to view.
+            To remove, drag back to sidebar.
         </div>
     </div>
 
@@ -440,7 +449,8 @@
     // State
     let currentState = {}; 
     let currentEquipment = {};
-    let completionState = {}; // New: { "cellId-studentId": boolean }
+    let completionState = {}; 
+    let notesState = {}; // New: { "cellId-studentId": "note text" }
 
     // Default Roster Logic
     const recommendedState = {
@@ -563,7 +573,15 @@
             const content = document.createElement('div');
             content.className = 'pill-content';
             
-            // 1. Completion Checkbox (NEW)
+            const noteKey = `${cellId}-${student.id}`;
+            // If there's a note, set tooltip
+            if (notesState[noteKey]) {
+                pill.title = notesState[noteKey];
+            } else {
+                pill.title = "";
+            }
+
+            // 1. Completion Checkbox
             const statusKey = `${cellId}-${student.id}`;
             const isDone = completionState[statusKey] || false;
             
@@ -597,21 +615,23 @@
             
             pill.appendChild(content);
 
-            // 4. Delete button
-            const deleteBtn = document.createElement('span');
-            deleteBtn.className = 'delete-btn';
-            deleteBtn.innerHTML = '×';
-            deleteBtn.title = 'Remove';
-            deleteBtn.onclick = (e) => {
+            // 4. Edit Note Button (Pencil)
+            const editBtn = document.createElement('span');
+            editBtn.className = 'edit-btn';
+            if (notesState[noteKey]) {
+                editBtn.classList.add('has-note'); // Visual indicator
+            }
+            editBtn.innerHTML = '✎'; 
+            editBtn.onclick = (e) => {
                 e.stopPropagation();
-                removeStudentFromSlot(cellId, student.id);
+                editNote(cellId, student.id);
             };
-            pill.appendChild(deleteBtn);
+            pill.appendChild(editBtn);
 
             // Click Pill Body -> Toggle Equipment
             pill.onclick = (e) => {
-                // If we clicked delete or status, don't cycle
-                if (e.target.classList.contains('delete-btn')) return;
+                // If we clicked edit or status, don't cycle
+                if (e.target.classList.contains('edit-btn')) return;
                 if (e.target.classList.contains('status-btn')) return;
                 toggleEquipment(cellId, student.id);
             };
@@ -718,6 +738,22 @@
         updateGridDisplay();
     }
 
+    function editNote(cellId, studentId) {
+        const key = `${cellId}-${studentId}`;
+        const currentNote = notesState[key] || "";
+        const newNote = prompt("Enter specific filming notes (e.g. 'Film math class'):", currentNote);
+        
+        if (newNote !== null) {
+            if (newNote.trim() === "") {
+                delete notesState[key];
+            } else {
+                notesState[key] = newNote.trim();
+            }
+            saveState();
+            updateGridDisplay();
+        }
+    }
+
     // --- Drag and Drop Logic ---
 
     let draggedStudentId = null;
@@ -814,6 +850,7 @@
             }
             delete currentEquipment[`${cellId}-${studentId}`];
             delete completionState[`${cellId}-${studentId}`];
+            delete notesState[`${cellId}-${studentId}`];
             
             saveState();
             updateGridDisplay();
@@ -824,21 +861,25 @@
         localStorage.setItem('berkley_roster_data', JSON.stringify(currentState));
         localStorage.setItem('berkley_roster_equip', JSON.stringify(currentEquipment));
         localStorage.setItem('berkley_roster_complete', JSON.stringify(completionState));
+        localStorage.setItem('berkley_roster_notes', JSON.stringify(notesState));
     }
 
     function loadState() {
         const savedData = localStorage.getItem('berkley_roster_data');
         const savedEquip = localStorage.getItem('berkley_roster_equip');
         const savedComplete = localStorage.getItem('berkley_roster_complete');
+        const savedNotes = localStorage.getItem('berkley_roster_notes');
         
         if (savedData) {
             currentState = JSON.parse(savedData);
             currentEquipment = savedEquip ? JSON.parse(savedEquip) : {};
             completionState = savedComplete ? JSON.parse(savedComplete) : {};
+            notesState = savedNotes ? JSON.parse(savedNotes) : {};
         } else {
             currentState = JSON.parse(JSON.stringify(recommendedState));
             currentEquipment = JSON.parse(JSON.stringify(recommendedEquipment));
             completionState = {};
+            notesState = {};
         }
         updateGridDisplay();
     }
@@ -850,6 +891,7 @@
                 currentState = {};
                 currentEquipment = {};
                 completionState = {};
+                notesState = {};
                 saveState();
                 updateGridDisplay();
             }
@@ -865,6 +907,7 @@
                 currentState = JSON.parse(JSON.stringify(recommendedState));
                 currentEquipment = JSON.parse(JSON.stringify(recommendedEquipment));
                 completionState = {};
+                notesState = {};
                 saveState();
                 updateGridDisplay();
             }
