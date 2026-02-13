@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,24 +59,28 @@
             margin-bottom: 20px;
             font-size: 0.9rem;
             display: flex;
-            flex-direction: row; /* Flow horizontally */
-            flex-wrap: wrap; /* Wrap if screen is too small */
+            flex-direction: row;
+            /* Flow horizontally */
+            flex-wrap: wrap;
+            /* Wrap if screen is too small */
             align-items: center;
-            gap: 30px; /* Wide gap to prevent crowding but allow flow */
+            gap: 30px;
+            /* Wide gap to prevent crowding but allow flow */
             flex-shrink: 0;
             line-height: 1.4;
         }
-        
+
         .instruction-line {
             display: flex;
             align-items: center;
             gap: 8px;
-            white-space: nowrap; /* Keep phrases together */
+            white-space: nowrap;
+            /* Keep phrases together */
         }
-        
+
         /* Highlight specific instructions */
         .key-action {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             padding: 2px 8px;
             border-radius: 4px;
             font-weight: bold;
@@ -134,7 +139,7 @@
             background-color: rgba(250, 82, 82, 0.2);
             border-color: var(--trash-bg);
         }
-        
+
         .student-pool.drag-over-delete::after {
             content: "Drop here to remove";
             display: block;
@@ -184,7 +189,7 @@
             user-select: none;
             display: flex;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             transition: all 0.2s ease;
         }
 
@@ -201,28 +206,29 @@
             cursor: grabbing;
             transform: scale(0.95);
         }
-        
+
         /* Grid specific pill styling */
         .grid-cell .student-pill {
             cursor: pointer;
             padding: 4px 8px;
             border-radius: 6px;
-            
+
             /* Uniform Layout */
             display: inline-flex;
-            width: 155px; /* Increased width to fit check button */
+            width: 155px;
+            /* Increased width to fit check button */
             box-sizing: border-box;
             justify-content: space-between;
-            
+
             margin-right: 5px;
             margin-bottom: 5px;
             font-size: 0.85rem;
         }
-        
+
         .grid-cell .student-pill:hover {
-            box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
         }
-        
+
         /* Wrapper for Check + Icon + Name */
         .pill-content {
             display: flex;
@@ -240,17 +246,17 @@
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             font-size: 10px;
             cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             flex-shrink: 0;
             transition: all 0.2s;
             color: transparent;
         }
-        
+
         .status-btn:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .status-btn.done {
@@ -262,28 +268,65 @@
 
         /* Done State for whole pill */
         .student-pill.pill-done {
-            background-color: #2b8a3e !important; /* Greenish override */
+            background-color: #2b8a3e !important;
+            /* Greenish override */
             opacity: 0.8;
             filter: grayscale(0.2);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .pill-done .pill-content span:not(.status-btn) {
-            text-decoration: line-through; /* Strikethrough text */
+            text-decoration: line-through;
+            /* Strikethrough text */
             opacity: 0.8;
         }
 
         /* Color coding */
-        .pill-isla { background-color: #f06595; }
-        .pill-chenuthi { background-color: #845ef7; }
-        .pill-tobin { background-color: #cc5de8; }
-        .pill-jacey { background-color: #51cf66; color: #1a1b1e; }
-        .pill-amelia { background-color: #339af0; }
-        .pill-seoyeon { background-color: #ff922b; color: #1a1b1e; }
-        .pill-alice { background-color: #fcc419; color: #1a1b1e; }
-        .pill-hunter { background-color: #94d82d; color: #1a1b1e; }
-        .pill-kanin { background-color: #20c997; color: #1a1b1e; }
-        .pill-faith { background-color: #fab005; color: #1a1b1e; }
+        .pill-isla {
+            background-color: #f06595;
+        }
+
+        .pill-chenuthi {
+            background-color: #845ef7;
+        }
+
+        .pill-tobin {
+            background-color: #cc5de8;
+        }
+
+        .pill-jacey {
+            background-color: #51cf66;
+            color: #1a1b1e;
+        }
+
+        .pill-amelia {
+            background-color: #339af0;
+        }
+
+        .pill-seoyeon {
+            background-color: #ff922b;
+            color: #1a1b1e;
+        }
+
+        .pill-alice {
+            background-color: #fcc419;
+            color: #1a1b1e;
+        }
+
+        .pill-hunter {
+            background-color: #94d82d;
+            color: #1a1b1e;
+        }
+
+        .pill-kanin {
+            background-color: #20c997;
+            color: #1a1b1e;
+        }
+
+        .pill-faith {
+            background-color: #fab005;
+            color: #1a1b1e;
+        }
 
         .equipment-icon {
             font-size: 1.1em;
@@ -307,13 +350,14 @@
         }
 
         .edit-btn:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             opacity: 1;
         }
 
         /* Style when note exists */
         .edit-btn.has-note {
-            color: var(--warning); /* Yellow pencil */
+            color: var(--warning);
+            /* Yellow pencil */
             opacity: 1;
             font-weight: bold;
         }
@@ -351,8 +395,8 @@
             background-color: var(--slot-bg);
             border-bottom: 1px solid var(--border-color);
             border-right: 1px solid var(--border-color);
-            min-height: 80px; 
-            padding: 8px; 
+            min-height: 80px;
+            padding: 8px;
             display: block;
             transition: background 0.2s;
         }
@@ -376,9 +420,9 @@
             color: var(--text-secondary);
             margin-right: 15px;
         }
-
     </style>
 </head>
+
 <body>
 
     <h1>
@@ -391,8 +435,9 @@
 
     <div class="instructions">
         <div class="instruction-line">
-            <span class="key-action">Click Circle ○</span> to mark Done (✓). 
-            <span class="key-action">Click Name/Icon</span> to cycle equipment: &nbsp; 🎥 &nbsp;→&nbsp; 📱 &nbsp;→&nbsp; 🚁.
+            <span class="key-action">Click Circle ○</span> to mark Done (✓).
+            <span class="key-action">Click Name/Icon</span> to cycle equipment: &nbsp; 🎥 &nbsp;→&nbsp; 📱 &nbsp;→&nbsp;
+            🚁.
         </div>
         <div class="instruction-line">
             <span class="key-action">Click Pencil ✎</span> to add notes. Hover to view.
@@ -402,7 +447,7 @@
 
     <!-- Main Layout: Grid on Left, Sidebar on Right -->
     <div class="main-layout">
-        
+
         <div class="schedule-container">
             <div class="schedule-grid" id="scheduleGrid">
                 <!-- Grid generated by JS -->
@@ -416,564 +461,581 @@
 
     </div>
 
-<script type="module">
-    // --- Firebase Imports & Setup ---
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <script type="module">
+        // --- Firebase Imports & Setup ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    // Initialize Firebase
-    const firebaseConfig = {
-        apiKey: "AIzaSyBiiOEfUnRY5tWZX8mSyvFAwnLLsK9QhH8",
-        authDomain: "dji-drop-studio.firebaseapp.com",
-        projectId: "dji-drop-studio",
-        storageBucket: "dji-drop-studio.firebasestorage.app",
-        messagingSenderId: "566870188844",
-        appId: "1:566870188844:web:81ce637d5c2e92fc7e4289"
-    };
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-    const appId = 'filming-roster-berkley';
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBiiOEfUnRY5tWZX8mSyvFAwnLLsK9QhH8",
+            authDomain: "dji-drop-studio.firebaseapp.com",
+            projectId: "dji-drop-studio",
+            storageBucket: "dji-drop-studio.firebasestorage.app",
+            messagingSenderId: "566870188844",
+            appId: "1:566870188844:web:81ce637d5c2e92fc7e4289"
+        };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = 'filming-roster-berkley';
 
-    // --- Data Configuration ---
-    const students = [
-        { id: 'isla', name: 'Isla', color: 'pill-isla' },
-        { id: 'chenuthi', name: 'Chenuthi', color: 'pill-chenuthi' },
-        { id: 'tobin', name: 'Tobin', color: 'pill-tobin' },
-        { id: 'jacey', name: 'Jacey', color: 'pill-jacey' },
-        { id: 'amelia', name: 'Amelia', color: 'pill-amelia' },
-        { id: 'seoyeon', name: 'Seoyeon', color: 'pill-seoyeon' },
-        { id: 'alice', name: 'Alice', color: 'pill-alice' },
-        { id: 'hunter', name: 'Hunter', color: 'pill-hunter' },
-        { id: 'kanin', name: 'Kanin', color: 'pill-kanin' },
-        { id: 'faith', name: 'Faith', color: 'pill-faith' },
-    ];
+        // --- Data Configuration ---
+        const students = [
+            { id: 'isla', name: 'Isla', color: 'pill-isla' },
+            { id: 'chenuthi', name: 'Chenuthi', color: 'pill-chenuthi' },
+            { id: 'tobin', name: 'Tobin', color: 'pill-tobin' },
+            { id: 'jacey', name: 'Jacey', color: 'pill-jacey' },
+            { id: 'amelia', name: 'Amelia', color: 'pill-amelia' },
+            { id: 'seoyeon', name: 'Seoyeon', color: 'pill-seoyeon' },
+            { id: 'alice', name: 'Alice', color: 'pill-alice' },
+            { id: 'hunter', name: 'Hunter', color: 'pill-hunter' },
+            { id: 'kanin', name: 'Kanin', color: 'pill-kanin' },
+            { id: 'faith', name: 'Faith', color: 'pill-faith' },
+        ];
 
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-    
-    const timeSlots = [
-        { id: 'before', label: 'Before School' },
-        { id: 'block1', label: 'Block 1' },
-        { id: 'break1', label: 'Break 1' },
-        { id: 'block2', label: 'Block 2' },
-        { id: 'break2', label: 'Break 2' },
-        { id: 'block3', label: 'Block 3' },
-        { id: 'lunch', label: 'Lunch' },
-        { id: 'after', label: 'After School' }
-    ];
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
-    const equipmentIcons = {
-        'camera': '🎥',
-        'phone': '📱',
-        'drone': '🚁',
-        'none': ''
-    };
+        const timeSlots = [
+            { id: 'before', label: 'Before School' },
+            { id: 'block1', label: 'Block 1' },
+            { id: 'break1', label: 'Break 1' },
+            { id: 'block2', label: 'Block 2' },
+            { id: 'break2', label: 'Break 2' },
+            { id: 'block3', label: 'Block 3' },
+            { id: 'lunch', label: 'Lunch' },
+            { id: 'after', label: 'After School' }
+        ];
 
-    const equipmentOrder = ['none', 'camera', 'phone', 'drone'];
+        const equipmentIcons = {
+            'camera': '🎥',
+            'phone': '📱',
+            'drone': '🚁',
+            'none': ''
+        };
 
-    // State
-    let currentState = {}; 
-    let currentEquipment = {};
-    let completionState = {}; 
-    let notesState = {}; // New: { "cellId-studentId": "note text" }
+        const equipmentOrder = ['none', 'camera', 'phone', 'drone'];
 
-    // Default Roster Logic
-    const recommendedState = {
-        'Monday-before': ['isla', 'jacey', 'chenuthi'],
-        'Monday-break1': ['hunter'],
-        'Monday-break2': ['kanin'],
-        'Monday-lunch': ['faith'],
-        'Monday-after': ['isla', 'chenuthi', 'tobin'],
-        
-        'Tuesday-before': ['amelia', 'isla', 'tobin'],
-        'Tuesday-break1': ['kanin'],
-        'Tuesday-break2': ['faith'],
-        'Tuesday-lunch': ['hunter'],
-        'Tuesday-after': ['alice', 'chenuthi'],
-        
-        // Wednesday AM fixed to 3 people max
-        'Wednesday-before': ['seoyeon', 'jacey', 'alice'], 
-        'Wednesday-break1': ['faith'],
-        'Wednesday-break2': ['hunter'],
-        'Wednesday-lunch': ['kanin'],
-        'Wednesday-after': ['chenuthi'], 
-        
-        'Thursday-before': ['seoyeon', 'isla', 'amelia'],
-        'Thursday-break1': ['hunter'],
-        'Thursday-break2': ['kanin'],
-        'Thursday-lunch': ['faith'],
-        'Thursday-after': ['amelia', 'alice', 'tobin'],
-        
-        'Friday-before': ['jacey', 'amelia', 'chenuthi'],
-        'Friday-break1': ['kanin'],
-        'Friday-break2': ['faith'],
-        'Friday-lunch': ['hunter'],
-        'Friday-after': ['amelia', 'alice', 'tobin']
-    };
-    
-    // FULL WEEK 3 EQUIPMENT ROTATION (ALL ASSIGNED)
-    const recommendedEquipment = {
-        // Monday
-        'Monday-before-isla': 'phone',
-        'Monday-before-jacey': 'camera',
-        'Monday-before-chenuthi': 'drone',
-        'Monday-break1-hunter': 'phone',
-        'Monday-break2-kanin': 'camera',
-        'Monday-lunch-faith': 'phone',
-        'Monday-after-isla': 'camera',
-        'Monday-after-chenuthi': 'drone',
-        'Monday-after-tobin': 'phone',
-        
-        // Tuesday
-        'Tuesday-before-amelia': 'phone',
-        'Tuesday-before-isla': 'camera',
-        'Tuesday-before-tobin': 'drone',
-        'Tuesday-break1-kanin': 'phone',
-        'Tuesday-break2-faith': 'camera',
-        'Tuesday-lunch-hunter': 'drone',
-        'Tuesday-after-alice': 'phone',
-        'Tuesday-after-chenuthi': 'camera',
+        // State
+        let currentState = {};
+        let currentEquipment = {};
+        let completionState = {};
+        let notesState = {}; // New: { "cellId-studentId": "note text" }
 
-        // Wednesday
-        'Wednesday-before-seoyeon': 'drone',
-        'Wednesday-before-alice': 'camera',
-        'Wednesday-before-jacey': 'phone',
-        'Wednesday-break1-faith': 'camera',
-        'Wednesday-break2-hunter': 'phone',
-        'Wednesday-lunch-kanin': 'camera',
-        'Wednesday-after-chenuthi': 'phone',
+        // Default Roster Logic
+        const recommendedState = {
+            'Monday-before': ['isla', 'jacey', 'chenuthi'],
+            'Monday-break1': ['hunter'],
+            'Monday-break2': ['kanin'],
+            'Monday-lunch': ['faith'],
+            'Monday-after': ['isla', 'chenuthi', 'tobin'],
 
-        // Thursday
-        'Thursday-before-seoyeon': 'phone',
-        'Thursday-before-isla': 'drone',
-        'Thursday-before-amelia': 'camera',
-        'Thursday-break1-hunter': 'camera',
-        'Thursday-break2-kanin': 'phone',
-        'Thursday-lunch-faith': 'drone',
-        'Thursday-after-amelia': 'drone',
-        'Thursday-after-alice': 'phone',
-        'Thursday-after-tobin': 'camera',
+            'Tuesday-before': ['amelia', 'isla', 'tobin'],
+            'Tuesday-break1': ['kanin'],
+            'Tuesday-break2': ['faith'],
+            'Tuesday-lunch': ['hunter'],
+            'Tuesday-after': ['alice', 'chenuthi'],
 
-        // Friday
-        'Friday-before-jacey': 'drone',
-        'Friday-before-amelia': 'phone',
-        'Friday-before-chenuthi': 'camera',
-        'Friday-break1-kanin': 'drone',
-        'Friday-break2-faith': 'phone',
-        'Friday-lunch-hunter': 'camera',
-        'Friday-after-amelia': 'camera',
-        'Friday-after-alice': 'drone',
-        'Friday-after-tobin': 'phone'
-    };
+            // Wednesday AM fixed to 3 people max
+            'Wednesday-before': ['seoyeon', 'jacey', 'alice'],
+            'Wednesday-break1': ['faith'],
+            'Wednesday-break2': ['hunter'],
+            'Wednesday-lunch': ['kanin'],
+            'Wednesday-after': ['chenuthi'],
 
-    // --- Initialization ---
+            'Thursday-before': ['seoyeon', 'isla', 'amelia'],
+            'Thursday-break1': ['hunter'],
+            'Thursday-break2': ['kanin'],
+            'Thursday-lunch': ['faith'],
+            'Thursday-after': ['amelia', 'alice', 'tobin'],
 
-    async function init() {
-        renderStudentPool();
-        renderGrid();
-        setupPoolDrop();
-        
-        // Expose functions globally for HTML onclick handlers
-        window.resetToDefault = resetToDefault;
-        window.clearSchedule = clearSchedule;
+            'Friday-before': ['jacey', 'amelia', 'chenuthi'],
+            'Friday-break1': ['kanin'],
+            'Friday-break2': ['faith'],
+            'Friday-lunch': ['hunter'],
+            'Friday-after': ['amelia', 'alice', 'tobin']
+        };
 
-        // Cloud Auth
-        document.getElementById('cloudStatus').textContent = "Connecting...";
-        
-        try {
-            await signInAnonymously(auth);
-            
-            // Connect to Live DB
-            const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'roster_data', 'week3');
-            onSnapshot(docRef, (docSnap) => {
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    currentState = data.currentState || {};
-                    currentEquipment = data.currentEquipment || {};
-                    completionState = data.completionState || {};
-                    notesState = data.notesState || {};
-                    updateGridDisplay();
-                    document.getElementById('cloudStatus').textContent = "☁️ Live";
-                } else {
-                    // First time? Save default state to DB
-                    document.getElementById('cloudStatus').textContent = "Initializing...";
-                    resetToDefault(true); 
-                }
-            }, (error) => {
-                console.error("Sync error:", error);
-                document.getElementById('cloudStatus').textContent = "⚠️ Sync Error";
+        // FULL WEEK 3 EQUIPMENT ROTATION (ALL ASSIGNED)
+        const recommendedEquipment = {
+            // Monday
+            'Monday-before-isla': 'phone',
+            'Monday-before-jacey': 'camera',
+            'Monday-before-chenuthi': 'drone',
+            'Monday-break1-hunter': 'phone',
+            'Monday-break2-kanin': 'camera',
+            'Monday-lunch-faith': 'phone',
+            'Monday-after-isla': 'camera',
+            'Monday-after-chenuthi': 'drone',
+            'Monday-after-tobin': 'phone',
+
+            // Tuesday
+            'Tuesday-before-amelia': 'phone',
+            'Tuesday-before-isla': 'camera',
+            'Tuesday-before-tobin': 'drone',
+            'Tuesday-break1-kanin': 'phone',
+            'Tuesday-break2-faith': 'camera',
+            'Tuesday-lunch-hunter': 'drone',
+            'Tuesday-after-alice': 'phone',
+            'Tuesday-after-chenuthi': 'camera',
+
+            // Wednesday
+            'Wednesday-before-seoyeon': 'drone',
+            'Wednesday-before-alice': 'camera',
+            'Wednesday-before-jacey': 'phone',
+            'Wednesday-break1-faith': 'camera',
+            'Wednesday-break2-hunter': 'phone',
+            'Wednesday-lunch-kanin': 'camera',
+            'Wednesday-after-chenuthi': 'phone',
+
+            // Thursday
+            'Thursday-before-seoyeon': 'phone',
+            'Thursday-before-isla': 'drone',
+            'Thursday-before-amelia': 'camera',
+            'Thursday-break1-hunter': 'camera',
+            'Thursday-break2-kanin': 'phone',
+            'Thursday-lunch-faith': 'drone',
+            'Thursday-after-amelia': 'drone',
+            'Thursday-after-alice': 'phone',
+            'Thursday-after-tobin': 'camera',
+
+            // Friday
+            'Friday-before-jacey': 'drone',
+            'Friday-before-amelia': 'phone',
+            'Friday-before-chenuthi': 'camera',
+            'Friday-break1-kanin': 'drone',
+            'Friday-break2-faith': 'phone',
+            'Friday-lunch-hunter': 'camera',
+            'Friday-after-amelia': 'camera',
+            'Friday-after-alice': 'drone',
+            'Friday-after-tobin': 'phone'
+        };
+
+        // --- Initialization ---
+
+        async function init() {
+            renderStudentPool();
+            renderGrid();
+            setupPoolDrop();
+
+            // Expose functions globally for HTML onclick handlers
+            window.resetToDefault = resetToDefault;
+            window.clearSchedule = clearSchedule;
+
+            // Cloud Auth
+            document.getElementById('cloudStatus').textContent = "Connecting...";
+
+            try {
+                await signInAnonymously(auth);
+
+                // Connect to Live DB
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'roster_data', 'week3');
+                onSnapshot(docRef, (docSnap) => {
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        currentState = data.currentState || {};
+                        currentEquipment = data.currentEquipment || {};
+                        completionState = data.completionState || {};
+                        notesState = data.notesState || {};
+                        updateGridDisplay();
+                        document.getElementById('cloudStatus').textContent = "☁️ Live";
+                    } else {
+                        // First time? Save default state to DB
+                        document.getElementById('cloudStatus').textContent = "Initializing...";
+                        resetToDefault(true);
+                    }
+                }, (error) => {
+                    console.error("Sync error:", error);
+                    document.getElementById('cloudStatus').textContent = "⚠️ Sync Error";
+                });
+
+            } catch (e) {
+                console.error("Auth error:", e);
+                document.getElementById('cloudStatus').textContent = "⚠️ Offline";
+            }
+        }
+
+        // --- Rendering ---
+
+        function renderStudentPool() {
+            const pool = document.getElementById('studentPool');
+            pool.innerHTML = '<span class="pool-label">Team Members</span>';
+
+            students.forEach(student => {
+                const pill = createPill(student, 'pool');
+                pool.appendChild(pill);
             });
-
-        } catch (e) {
-            console.error("Auth error:", e);
-            document.getElementById('cloudStatus').textContent = "⚠️ Offline";
         }
-    }
 
-    // --- Rendering ---
+        function createPill(student, origin, cellId) {
+            const pill = document.createElement('div');
+            pill.className = `student-pill ${student.color}`;
+            pill.draggable = true;
+            pill.dataset.studentId = student.id;
 
-    function renderStudentPool() {
-        const pool = document.getElementById('studentPool');
-        pool.innerHTML = '<span class="pool-label">Team Members</span>';
-        
-        students.forEach(student => {
-            const pill = createPill(student, 'pool');
-            pool.appendChild(pill);
-        });
-    }
+            // Use a structure that allows separation in the grid
+            if (origin === 'grid') {
+                const content = document.createElement('div');
+                content.className = 'pill-content';
 
-    function createPill(student, origin, cellId) {
-        const pill = document.createElement('div');
-        pill.className = `student-pill ${student.color}`;
-        pill.draggable = true;
-        pill.dataset.studentId = student.id;
-        
-        // Use a structure that allows separation in the grid
-        if (origin === 'grid') {
-            const content = document.createElement('div');
-            content.className = 'pill-content';
-            
-            const noteKey = `${cellId}-${student.id}`;
-            // If there's a note, set tooltip
-            if (notesState[noteKey]) {
-                pill.title = notesState[noteKey];
+                const noteKey = `${cellId}-${student.id}`;
+                // If there's a note, set tooltip
+                if (notesState[noteKey]) {
+                    pill.title = notesState[noteKey];
+                } else {
+                    pill.title = "";
+                }
+
+                // 1. Completion Checkbox
+                const statusKey = `${cellId}-${student.id}`;
+                const isDone = completionState[statusKey] || false;
+
+                if (isDone) {
+                    pill.classList.add('pill-done');
+                }
+
+                const checkBtn = document.createElement('span');
+                checkBtn.className = isDone ? 'status-btn done' : 'status-btn';
+                checkBtn.innerHTML = isDone ? '✓' : '○';
+                checkBtn.onclick = (e) => {
+                    e.stopPropagation(); // Stop bubble so we don't toggle equipment
+                    toggleCompletion(cellId, student.id);
+                };
+                content.appendChild(checkBtn);
+
+                // 2. Equipment Icon
+                const equipKey = `${cellId}-${student.id}`;
+                const equip = currentEquipment[equipKey] || 'none';
+                if (equip !== 'none') {
+                    const iconSpan = document.createElement('span');
+                    iconSpan.className = 'equipment-icon';
+                    iconSpan.textContent = equipmentIcons[equip];
+                    content.appendChild(iconSpan);
+                }
+
+                // 3. Name
+                const nameSpan = document.createElement('span');
+                nameSpan.textContent = student.name;
+                content.appendChild(nameSpan);
+
+                pill.appendChild(content);
+
+                // 4. Edit Note Button (Pencil)
+                const editBtn = document.createElement('span');
+                editBtn.className = 'edit-btn';
+                if (notesState[noteKey]) {
+                    editBtn.classList.add('has-note'); // Visual indicator
+                }
+                editBtn.innerHTML = '✎';
+                editBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    editNote(cellId, student.id);
+                };
+                pill.appendChild(editBtn);
+
+                // Click Pill Body -> Toggle Equipment
+                pill.onclick = (e) => {
+                    // If we clicked edit or status, don't cycle
+                    if (e.target.classList.contains('edit-btn')) return;
+                    if (e.target.classList.contains('status-btn')) return;
+                    toggleEquipment(cellId, student.id);
+                };
             } else {
-                pill.title = "";
+                // Sidebar simple structure
+                pill.textContent = student.name;
             }
 
-            // 1. Completion Checkbox
-            const statusKey = `${cellId}-${student.id}`;
-            const isDone = completionState[statusKey] || false;
-            
-            if (isDone) {
-                pill.classList.add('pill-done');
-            }
-            
-            const checkBtn = document.createElement('span');
-            checkBtn.className = isDone ? 'status-btn done' : 'status-btn';
-            checkBtn.innerHTML = isDone ? '✓' : '○';
-            checkBtn.onclick = (e) => {
-                e.stopPropagation(); // Stop bubble so we don't toggle equipment
-                toggleCompletion(cellId, student.id);
-            };
-            content.appendChild(checkBtn);
-            
-            // 2. Equipment Icon
-            const equipKey = `${cellId}-${student.id}`;
-            const equip = currentEquipment[equipKey] || 'none';
-            if (equip !== 'none') {
-                const iconSpan = document.createElement('span');
-                iconSpan.className = 'equipment-icon';
-                iconSpan.textContent = equipmentIcons[equip];
-                content.appendChild(iconSpan);
-            }
-            
-            // 3. Name
-            const nameSpan = document.createElement('span');
-            nameSpan.textContent = student.name;
-            content.appendChild(nameSpan);
-            
-            pill.appendChild(content);
+            // Drag Events
+            pill.addEventListener('dragstart', handleDragStart);
 
-            // 4. Edit Note Button (Pencil)
-            const editBtn = document.createElement('span');
-            editBtn.className = 'edit-btn';
-            if (notesState[noteKey]) {
-                editBtn.classList.add('has-note'); // Visual indicator
-            }
-            editBtn.innerHTML = '✎'; 
-            editBtn.onclick = (e) => {
-                e.stopPropagation();
-                editNote(cellId, student.id);
-            };
-            pill.appendChild(editBtn);
-
-            // Click Pill Body -> Toggle Equipment
-            pill.onclick = (e) => {
-                // If we clicked edit or status, don't cycle
-                if (e.target.classList.contains('edit-btn')) return;
-                if (e.target.classList.contains('status-btn')) return;
-                toggleEquipment(cellId, student.id);
-            };
-        } else {
-            // Sidebar simple structure
-            pill.textContent = student.name;
+            return pill;
         }
 
-        // Drag Events
-        pill.addEventListener('dragstart', handleDragStart);
+        function renderGrid() {
+            const grid = document.getElementById('scheduleGrid');
+            grid.innerHTML = '';
 
-        return pill;
-    }
-
-    function renderGrid() {
-        const grid = document.getElementById('scheduleGrid');
-        grid.innerHTML = '';
-
-        const corner = document.createElement('div');
-        corner.className = 'header-cell';
-        grid.appendChild(corner);
-
-        days.forEach(day => {
-            const header = document.createElement('div');
-            header.className = 'header-cell';
-            header.textContent = day;
-            grid.appendChild(header);
-        });
-
-        timeSlots.forEach(slot => {
-            const label = document.createElement('div');
-            label.className = 'time-label';
-            label.textContent = slot.label;
-            grid.appendChild(label);
+            const corner = document.createElement('div');
+            corner.className = 'header-cell';
+            grid.appendChild(corner);
 
             days.forEach(day => {
-                const cellId = `${day}-${slot.id}`;
-                const cell = document.createElement('div');
-                cell.className = 'grid-cell';
-                if (slot.id.includes('break') || slot.id === 'lunch') {
-                    cell.classList.add('row-break');
-                }
-                cell.id = cellId;
-                
-                cell.addEventListener('dragover', handleDragOver);
-                cell.addEventListener('dragleave', handleDragLeave);
-                cell.addEventListener('drop', handleDrop);
-
-                grid.appendChild(cell);
+                const header = document.createElement('div');
+                header.className = 'header-cell';
+                header.textContent = day;
+                grid.appendChild(header);
             });
-        });
-    }
 
-    function updateGridDisplay() {
-        document.querySelectorAll('.grid-cell').forEach(cell => {
-            cell.innerHTML = '';
-        });
+            timeSlots.forEach(slot => {
+                const label = document.createElement('div');
+                label.className = 'time-label';
+                label.textContent = slot.label;
+                grid.appendChild(label);
 
-        for (const [cellId, studentIds] of Object.entries(currentState)) {
-            const cell = document.getElementById(cellId);
-            if (cell && Array.isArray(studentIds)) {
-                studentIds.forEach(studentId => {
-                    const student = students.find(s => s.id === studentId);
-                    if (student) {
-                        cell.appendChild(createPill(student, 'grid', cellId));
+                days.forEach(day => {
+                    const cellId = `${day}-${slot.id}`;
+                    const cell = document.createElement('div');
+                    cell.className = 'grid-cell';
+                    if (slot.id.includes('break') || slot.id === 'lunch') {
+                        cell.classList.add('row-break');
                     }
+                    cell.id = cellId;
+
+                    cell.addEventListener('dragover', handleDragOver);
+                    cell.addEventListener('dragleave', handleDragLeave);
+                    cell.addEventListener('drop', handleDrop);
+
+                    grid.appendChild(cell);
                 });
+            });
+        }
+
+        function updateGridDisplay() {
+            document.querySelectorAll('.grid-cell').forEach(cell => {
+                cell.innerHTML = '';
+            });
+
+            for (const [cellId, studentIds] of Object.entries(currentState)) {
+                const cell = document.getElementById(cellId);
+                if (cell && Array.isArray(studentIds)) {
+                    studentIds.forEach(studentId => {
+                        const student = students.find(s => s.id === studentId);
+                        if (student) {
+                            cell.appendChild(createPill(student, 'grid', cellId));
+                        }
+                    });
+                }
             }
         }
-    }
 
-    // --- Logic ---
+        // --- Logic ---
 
-    function toggleEquipment(cellId, studentId) {
-        const key = `${cellId}-${studentId}`;
-        const current = currentEquipment[key] || 'none';
-        
-        let nextIndex = equipmentOrder.indexOf(current) + 1;
-        if (nextIndex >= equipmentOrder.length) nextIndex = 0;
-        
-        const next = equipmentOrder[nextIndex];
-        
-        if (next === 'none') {
-            delete currentEquipment[key];
-        } else {
-            currentEquipment[key] = next;
-        }
-        
-        saveState();
-        updateGridDisplay();
-    }
-    
-    function toggleCompletion(cellId, studentId) {
-        const key = `${cellId}-${studentId}`;
-        const current = completionState[key] || false;
-        
-        if (current) {
-            delete completionState[key];
-        } else {
-            completionState[key] = true;
-        }
-        
-        saveState();
-        updateGridDisplay();
-    }
+        function toggleEquipment(cellId, studentId) {
+            const key = `${cellId}-${studentId}`;
+            const current = currentEquipment[key] || 'none';
 
-    function editNote(cellId, studentId) {
-        const key = `${cellId}-${studentId}`;
-        const currentNote = notesState[key] || "";
-        const newNote = prompt("Enter specific filming notes (e.g. 'Film math class'):", currentNote);
-        
-        if (newNote !== null) {
-            if (newNote.trim() === "") {
-                delete notesState[key];
+            let nextIndex = equipmentOrder.indexOf(current) + 1;
+            if (nextIndex >= equipmentOrder.length) nextIndex = 0;
+
+            const next = equipmentOrder[nextIndex];
+
+            if (next === 'none') {
+                delete currentEquipment[key];
             } else {
-                notesState[key] = newNote.trim();
+                currentEquipment[key] = next;
             }
+
             saveState();
             updateGridDisplay();
         }
-    }
 
-    // --- Drag and Drop Logic ---
+        function toggleCompletion(cellId, studentId) {
+            const key = `${cellId}-${studentId}`;
+            const current = completionState[key] || false;
 
-    let draggedStudentId = null;
-    let sourceCellId = null;
-
-    function handleDragStart(e) {
-        draggedStudentId = e.target.dataset.studentId;
-        if (e.target.parentElement.classList.contains('grid-cell')) {
-            sourceCellId = e.target.parentElement.id;
-        } else {
-            sourceCellId = null;
-        }
-        e.dataTransfer.effectAllowed = 'copyMove';
-    }
-
-    function handleDragOver(e) {
-        e.preventDefault();
-        e.currentTarget.classList.add('drag-over');
-    }
-
-    function handleDragLeave(e) {
-        e.currentTarget.classList.remove('drag-over');
-    }
-
-    function handleDrop(e) {
-        e.preventDefault();
-        const targetCell = e.currentTarget;
-        targetCell.classList.remove('drag-over');
-        const targetCellId = targetCell.id;
-
-        if (!draggedStudentId) return;
-        if (sourceCellId === targetCellId) return;
-
-        // Limit Check
-        if (currentState[targetCellId] && currentState[targetCellId].length >= 3) {
-            alert("Maximum 3 team members allowed per slot!");
-            return;
-        }
-
-        if (sourceCellId) {
-            removeStudentFromSlot(sourceCellId, draggedStudentId);
-        }
-
-        addStudentToSlot(targetCellId, draggedStudentId);
-    }
-
-    // --- Sidebar Drop to Delete Logic ---
-    
-    function setupPoolDrop() {
-        const pool = document.getElementById('studentPool');
-        
-        pool.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            // Only show delete cue if dragging from grid
-            if (sourceCellId) {
-                pool.classList.add('drag-over-delete');
+            if (current) {
+                delete completionState[key];
+            } else {
+                completionState[key] = true;
             }
-        });
 
-        pool.addEventListener('dragleave', (e) => {
-            pool.classList.remove('drag-over-delete');
-        });
-
-        pool.addEventListener('drop', (e) => {
-            e.preventDefault();
-            pool.classList.remove('drag-over-delete');
-            
-            // Only perform delete if coming from grid
-            if (sourceCellId && draggedStudentId) {
-                removeStudentFromSlot(sourceCellId, draggedStudentId);
-            }
-        });
-    }
-
-
-    // --- State Management ---
-
-    function addStudentToSlot(cellId, studentId) {
-        if (!currentState[cellId]) {
-            currentState[cellId] = [];
-        }
-        if (!currentState[cellId].includes(studentId)) {
-            currentState[cellId].push(studentId);
-        }
-        saveState();
-        updateGridDisplay();
-    }
-
-    function removeStudentFromSlot(cellId, studentId) {
-        if (currentState[cellId]) {
-            currentState[cellId] = currentState[cellId].filter(id => id !== studentId);
-            if (currentState[cellId].length === 0) {
-                delete currentState[cellId];
-            }
-            delete currentEquipment[`${cellId}-${studentId}`];
-            delete completionState[`${cellId}-${studentId}`];
-            delete notesState[`${cellId}-${studentId}`];
-            
             saveState();
             updateGridDisplay();
         }
-    }
 
-    function saveState() {
-        // Save to Firebase instead of LocalStorage
-        const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'roster_data', 'week3');
-        setDoc(docRef, {
-            currentState,
-            currentEquipment,
-            completionState,
-            notesState
-        }, { merge: true });
-    }
+        function editNote(cellId, studentId) {
+            const key = `${cellId}-${studentId}`;
+            const currentNote = notesState[key] || "";
+            const newNote = prompt("Enter specific filming notes (e.g. 'Film math class'):", currentNote);
 
-    function clearSchedule() {
-        const pin = prompt("Enter PIN to clear schedule:");
-        if (pin === "2626") {
-            if(confirm("Are you sure you want to clear the entire schedule?")) {
-                currentState = {};
-                currentEquipment = {};
-                completionState = {};
-                notesState = {};
+            if (newNote !== null) {
+                if (newNote.trim() === "") {
+                    delete notesState[key];
+                } else {
+                    notesState[key] = newNote.trim();
+                }
                 saveState();
                 updateGridDisplay();
             }
-        } else if (pin !== null) {
-            alert("Incorrect PIN");
         }
-    }
 
-    function resetToDefault(skipConfirm = false) {
-        if (skipConfirm) {
-            currentState = JSON.parse(JSON.stringify(recommendedState));
-            currentEquipment = JSON.parse(JSON.stringify(recommendedEquipment));
-            completionState = {};
-            notesState = {};
+        // --- Drag and Drop Logic ---
+
+        let draggedStudentId = null;
+        let sourceCellId = null;
+
+        function handleDragStart(e) {
+            draggedStudentId = e.target.dataset.studentId;
+            if (e.target.parentElement.classList.contains('grid-cell')) {
+                sourceCellId = e.target.parentElement.id;
+            } else {
+                sourceCellId = null;
+            }
+            e.dataTransfer.effectAllowed = 'copyMove';
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const targetCell = e.currentTarget;
+            targetCell.classList.remove('drag-over');
+            const targetCellId = targetCell.id;
+
+            if (!draggedStudentId) return;
+            if (sourceCellId === targetCellId) return;
+
+            // Limit Check
+            if (currentState[targetCellId] && currentState[targetCellId].length >= 3) {
+                alert("Maximum 3 team members allowed per slot!");
+                return;
+            }
+
+            if (sourceCellId) {
+                // Preserve metadata before removing from old slot
+                const oldKey = `${sourceCellId}-${draggedStudentId}`;
+                const savedEquip = currentEquipment[oldKey];
+                const savedDone = completionState[oldKey];
+                const savedNote = notesState[oldKey];
+
+                removeStudentFromSlot(sourceCellId, draggedStudentId);
+                addStudentToSlot(targetCellId, draggedStudentId);
+
+                // Restore metadata under the new cell key
+                const newKey = `${targetCellId}-${draggedStudentId}`;
+                if (savedEquip) currentEquipment[newKey] = savedEquip;
+                if (savedDone) completionState[newKey] = savedDone;
+                if (savedNote) notesState[newKey] = savedNote;
+
+                saveState();
+                updateGridDisplay();
+            } else {
+                addStudentToSlot(targetCellId, draggedStudentId);
+            }
+        }
+
+        // --- Sidebar Drop to Delete Logic ---
+
+        function setupPoolDrop() {
+            const pool = document.getElementById('studentPool');
+
+            pool.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                // Only show delete cue if dragging from grid
+                if (sourceCellId) {
+                    pool.classList.add('drag-over-delete');
+                }
+            });
+
+            pool.addEventListener('dragleave', (e) => {
+                pool.classList.remove('drag-over-delete');
+            });
+
+            pool.addEventListener('drop', (e) => {
+                e.preventDefault();
+                pool.classList.remove('drag-over-delete');
+
+                // Only perform delete if coming from grid
+                if (sourceCellId && draggedStudentId) {
+                    removeStudentFromSlot(sourceCellId, draggedStudentId);
+                }
+            });
+        }
+
+
+        // --- State Management ---
+
+        function addStudentToSlot(cellId, studentId) {
+            if (!currentState[cellId]) {
+                currentState[cellId] = [];
+            }
+            if (!currentState[cellId].includes(studentId)) {
+                currentState[cellId].push(studentId);
+            }
             saveState();
             updateGridDisplay();
-            return;
         }
 
-        const pin = prompt("Enter PIN to reset schedule:");
-        if (pin === "2626") {
-            if(confirm("Reset to the Week 3 Plan? This will overwrite your changes.")) {
+        function removeStudentFromSlot(cellId, studentId) {
+            if (currentState[cellId]) {
+                currentState[cellId] = currentState[cellId].filter(id => id !== studentId);
+                if (currentState[cellId].length === 0) {
+                    delete currentState[cellId];
+                }
+                delete currentEquipment[`${cellId}-${studentId}`];
+                delete completionState[`${cellId}-${studentId}`];
+                delete notesState[`${cellId}-${studentId}`];
+
+                saveState();
+                updateGridDisplay();
+            }
+        }
+
+        function saveState() {
+            // Save to Firebase instead of LocalStorage
+            const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'roster_data', 'week3');
+            setDoc(docRef, {
+                currentState,
+                currentEquipment,
+                completionState,
+                notesState
+            }, { merge: true });
+        }
+
+        function clearSchedule() {
+            const pin = prompt("Enter PIN to clear schedule:");
+            if (pin === "2626") {
+                if (confirm("Are you sure you want to clear the entire schedule?")) {
+                    currentState = {};
+                    currentEquipment = {};
+                    completionState = {};
+                    notesState = {};
+                    saveState();
+                    updateGridDisplay();
+                }
+            } else if (pin !== null) {
+                alert("Incorrect PIN");
+            }
+        }
+
+        function resetToDefault(skipConfirm = false) {
+            if (skipConfirm) {
                 currentState = JSON.parse(JSON.stringify(recommendedState));
                 currentEquipment = JSON.parse(JSON.stringify(recommendedEquipment));
                 completionState = {};
                 notesState = {};
                 saveState();
                 updateGridDisplay();
+                return;
             }
-        } else if (pin !== null) {
-            alert("Incorrect PIN");
+
+            const pin = prompt("Enter PIN to reset schedule:");
+            if (pin === "2626") {
+                if (confirm("Reset to the Week 3 Plan? This will overwrite your changes.")) {
+                    currentState = JSON.parse(JSON.stringify(recommendedState));
+                    currentEquipment = JSON.parse(JSON.stringify(recommendedEquipment));
+                    completionState = {};
+                    notesState = {};
+                    saveState();
+                    updateGridDisplay();
+                }
+            } else if (pin !== null) {
+                alert("Incorrect PIN");
+            }
         }
-    }
 
-    // Run
-    init();
+        // Run
+        init();
 
-</script>
+    </script>
 </body>
+
 </html>
