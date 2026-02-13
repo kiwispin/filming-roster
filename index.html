@@ -419,15 +419,22 @@
 <script type="module">
     // --- Firebase Imports & Setup ---
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
     // Initialize Firebase
-    const firebaseConfig = JSON.parse(__firebase_config);
+    const firebaseConfig = {
+        apiKey: "AIzaSyBiiOEfUnRY5tWZX8mSyvFAwnLLsK9QhH8",
+        authDomain: "dji-drop-studio.firebaseapp.com",
+        projectId: "dji-drop-studio",
+        storageBucket: "dji-drop-studio.firebasestorage.app",
+        messagingSenderId: "566870188844",
+        appId: "1:566870188844:web:81ce637d5c2e92fc7e4289"
+    };
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
-    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+    const appId = 'filming-roster-berkley';
 
     // --- Data Configuration ---
     const students = [
@@ -575,11 +582,7 @@
         document.getElementById('cloudStatus').textContent = "Connecting...";
         
         try {
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                await signInWithCustomToken(auth, __initial_auth_token);
-            } else {
-                await signInAnonymously(auth);
-            }
+            await signInAnonymously(auth);
             
             // Connect to Live DB
             const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'roster_data', 'week3');
